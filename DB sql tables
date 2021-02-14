@@ -1,0 +1,32 @@
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	name varchar(30) NOT NULL,
+	email text UNIQUE NOT NULL,
+	joined timestamp NOT NULL
+	);
+
+CREATE TABLE login (
+	id serial PRIMARY KEY,
+	hash varchar(100) NOT NULL,
+	email text UNIQUE NOT NULL
+);
+
+CREATE TABLE businesses (
+	id serial PRIMARY KEY,
+	name varchar(35) NOT NULL,
+	country varchar(35) NOT NULL,
+	city varchar(35) NOT NULL,
+	street varchar(40) NOT NULL,
+	picture text NOT NULL,
+	category varchar(15) NOT NULL,
+	description text NOT NULL,
+	phoneNumber varchar(20) NOT NULL
+);
+
+CREATE TABLE reviews (
+	id serial PRIMARY KEY,
+	name varchar(30) NOT NULL,
+	content text NOT NULL,
+	rating smallint DEFAULT 0,
+	businessId integer REFERENCES businesses
+);
