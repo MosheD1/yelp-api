@@ -19,6 +19,10 @@ const retriveBusiness = (req, res, db) => {
 }
 
 const addBusinessToDB = (req, res, db) => {
+
+    if(!req.body.name || !req.body.picture) {
+        return res.status(400).json('form submission failed');
+    }
     db('businesses')
     .returning('*')
     .insert({
